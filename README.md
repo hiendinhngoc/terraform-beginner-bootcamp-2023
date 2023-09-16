@@ -90,3 +90,31 @@ https://en.wikipedia.org/wiki/Chmod
 We need to be careful when using the Init because it will not rerun if we restart an existing workspace.
 
 https://www.gitpod.io/docs/configure/workspaces/tasks
+
+## Set up environment variable
+
+### Show the environment variables
+1. show all: `env`
+2. show specific variable: `env | grep [variable name]`
+
+### Set environment variables
+There are serveral ways to set environment variable for the project:
+1. Hard code: set directly variable to the file and then call it:
+```sh
+#!/usr/bin/env bash
+PROJECT_ROOT = '/workspace/terraform-beginner-bootcamp'`
+
+echo $PROJECT_ROOT
+```
+2. On terminal(**The variable only work with current windown**):
+    a. Permanant
+        - Use `export` to set: `export PROJECT_ROOT='/workspace/terraform-beginner-bootcamp'`
+        - Use `unset` to unset: `unset PROJECT_ROOT`
+    b. Temporary
+        - `PROJECT_ROOT='/workspace/terraform-beginner-bootcamp' ./bin/message`
+
+### Print variables
+Use `echo`: `echo $HELLO`
+
+### Global environment variable
+Set the variable into a bash file(`.bash_profile`)
