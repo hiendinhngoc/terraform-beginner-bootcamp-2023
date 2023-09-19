@@ -118,3 +118,47 @@ Use `echo`: `echo $HELLO`
 
 ### Global environment variable
 Set the variable into a bash file(`.bash_profile`)
+
+## Install AWS CLI
+### Move the installation script to bash script
+1. Create a bash script file call `install_aws_cli` in [bin](./bin/install_aws_cli) folder
+2. Move the script which was put in `.gitpod.yml` file before to the new bash file:
+```sh
+    cd /workspace
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+    cd $THEIA_WORKSPACE_ROOT
+```
+3. Update command to run the script in the `.gitpod.yml` file:
+```sh
+    - name: aws-cli
+        env:
+            AWS_CLI_AUTO_PROMPT: on-partial
+        before: |
+            source ./bin/install_aws_cli
+```
+
+### Make sure the installation work well
+1. Check credential configuration
+Using command:
+```sh
+aws sts get-caller-identity
+```
+
+It should show the result like this:
+```jso
+{
+    "UserId": "ABCAVUO12ZPVHJ3WIJ4KR",
+    "Account": "123456789012",
+    "Arn": "arn:aws:iam::123456789012:user/terraform-beginner-bootcamp"
+}
+```
+
+If not, you should create a new user and then generate a new AWS CLI credentials for it. After you have your new access and screte keys, add them to your .env file(not .env.example) with the same format as from .env.example file. Then rerun the above command, it will work.
+
+Remove file and folder(if existed)
+```sh
+rm -f '/workspace/awscliv2.zip'
+rm -rf '/workspace/aws'
+```
