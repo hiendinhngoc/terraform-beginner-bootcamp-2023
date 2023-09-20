@@ -163,11 +163,6 @@ rm -f '/workspace/awscliv2.zip'
 rm -rf '/workspace/aws'
 ```
 ## Terraform basics
-**Need to read**
-- registry: https://registry.terraform.io(providers, modules)
-- terraform resource(in main.tf)
-- terraform output(in main.tf)
-- github ignore
 
 ### Terraform registry
 The [Terraform Registry](https://registry.terraform.io) is a public registry of Terraform providers and modules. It is hosted by HashiCorp and is the official source for finding and installing Terraform providers and modules.
