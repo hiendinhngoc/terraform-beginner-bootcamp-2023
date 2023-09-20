@@ -162,3 +162,75 @@ Remove file and folder(if existed)
 rm -f '/workspace/awscliv2.zip'
 rm -rf '/workspace/aws'
 ```
+## Terraform basics
+**Need to read**
+- registry: https://registry.terraform.io(providers, modules)
+- terraform resource(in main.tf)
+- terraform output(in main.tf)
+- github ignore
+
+### Terraform registry
+The [Terraform Registry](https://registry.terraform.io) is a public registry of Terraform providers and modules. It is hosted by HashiCorp and is the official source for finding and installing Terraform providers and modules.
+
+- **[Providers](https://registry.terraform.io/browse/providers)** are plugins that allow Terraform to manage the resources of a specific cloud provider or infrastructure platform. For example, the AWS provider allows Terraform to manage EC2 instances, S3 buckets, and other AWS resources.
+- **[Modules](https://registry.terraform.io/browse/modules)** are reusable Terraform configurations that can be called and configured by other configurations. Most modules manage a few closely related resources from a single provider. For example, the terraform-aws-modules/vpc module can be used to create a VPC with all the necessary subnets, security groups, and routing tables.
+
+To use a provider or module from the Terraform Registry, just add it to your Terraform configuration file. When you run terraform init, Terraform will automatically download everything it needs from the registry.
+
+The Terraform Registry includes a wide variety of providers and modules, covering a broad range of cloud providers, infrastructure platforms, and other services. This makes it easy to use Terraform to provision and manage infrastructure on virtually any platform.
+
+Here are some of the benefits of using the Terraform Registry:
+
+- It is the official source for finding and installing Terraform providers and modules.
+- It includes a wide variety of providers and modules, covering a broad range of cloud providers, infrastructure platforms, and other services.
+- It is easy to use and provides a consistent experience for finding and installing providers and modules.
+- It is maintained by HashiCorp, the creators of Terraform.
+
+Overall, the Terraform Registry is a valuable resource for Terraform users. It makes it easy to find and install the providers and modules you need to manage your infrastructure efficiently and effectively.
+
+### Terraform commands
+These are some basic commands
+
+#### Working directory
+A Terraform working directory typically contains:
+
+- A Terraform configuration describing resources Terraform should manage. This configuration is expected to change over time.
+- A hidden `.terraform` directory, which Terraform uses to manage cached provider plugins and modules, record which workspace is currently active, and record the last known backend configuration in case it needs to migrate state on the next run. This directory is automatically managed by Terraform, and is created during initialization.
+- State data, if the configuration uses the default local backend. This is managed by Terraform in a `terraform.tfstate` file (if the directory only uses the default workspace) or a `terraform.tfstate.d` directory (if the directory uses multiple workspaces).
+- `.terraform` directory and `.tfstate` file should be ignored to public to CVS
+
+#### Initialize
+A working directory must be initialized before Terraform can perform any operations in it (like provisioning infrastructure or modifying state).
+To initilize the directory, run `terraform init`. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times.
+`init` can run with options, for more details check the [link](https://developer.hashicorp.com/terraform/cli/commands/init)
+
+#### Provisioning Infrastructure
+When people refer to "running Terraform," they generally mean performing these provisioning actions in order to affect real infrastructure objects. The Terraform binary has many other subcommands for a wide variety of administrative actions, but these basic provisioning tasks are the core of Terraform.
+Terraform's provisioning workflow relies on three commands: `plan`, `apply`, and `destroy`
+
+##### plan
+The terraform plan command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure. By default, when Terraform creates a plan it:
+
+- Reads the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
+- Compares the current configuration to the prior state and noting any differences.
+- Proposes a set of change actions that should, if applied, make the remote objects match the configuration.
+
+For more details about usage, modes and options, please refer to the [link](https://developer.hashicorp.com/terraform/cli/commands/plan)
+
+##### apply
+The terraform apply command executes the actions proposed in a Terraform plan.
+
+for more details about usage, modes and options of apply, please check the [link](https://developer.hashicorp.com/terraform/cli/commands/apply)
+
+### Terraform lock files
+The dependency lock file is a file that belongs to the configuration as a whole, rather than to each separate module in the configuration. For that reason Terraform creates it and expects to find it in your current working directory when you run Terraform, which is also the directory containing the `.tf` files for the root module of your configuration.
+
+The lock file is always named `.terraform.lock.hcl`, and this name is intended to signify that it is a lock file for various items that Terraform caches in the `.terraform` subdirectory of your working directory.
+
+### Git ignore
+To hide a file or folder to be publiced to VCS, add the file name or path to directory to the `.gitignore` file:
+```
+# .tfstate files
+*.tfstate
+*.tfstate.*
+```
