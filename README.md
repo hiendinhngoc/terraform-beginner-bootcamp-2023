@@ -217,6 +217,10 @@ The terraform apply command executes the actions proposed in a Terraform plan.
 
 for more details about usage, modes and options of apply, please check the [link](https://developer.hashicorp.com/terraform/cli/commands/apply)
 
+#### destroy
+The terraform destroy command terminates resources managed by your Terraform project. This command is the inverse of terraform apply in that it terminates all the resources specified in your Terraform state. It does not destroy resources running elsewhere that are not managed by the current Terraform project.
+Usage [details](https://developer.hashicorp.com/terraform/cli/commands/destroy)
+
 ### Terraform lock files
 The dependency lock file is a file that belongs to the configuration as a whole, rather than to each separate module in the configuration. For that reason Terraform creates it and expects to find it in your current working directory when you run Terraform, which is also the directory containing the `.tf` files for the root module of your configuration.
 
