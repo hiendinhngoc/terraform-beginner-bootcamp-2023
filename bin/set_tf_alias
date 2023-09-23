@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check if the alias already exists
+if [[ $(alias | grep tf) == "" ]]; then
+
+  # Add the alias to .bash_profile
+  echo "alias tf='terraform'" >> ~/.bash_profile
+
+  # Source the .bash_profile to make the alias immediately available
+  source ~/.bash_profile
+
+  # Display a message to the user
+  echo "The alias 'tf' has been added to your .bash_profile."
+
+else
+
+  # The alias already exists, so do nothing
+  echo "The alias 'tf' already exists."
+
+fi
