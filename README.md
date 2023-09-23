@@ -247,6 +247,9 @@ Provide the following code(add your above generated token)
 }
 ```
 
+**Workaround**
+Create a bash script to run the generation automatically in file `./bin/generate_tfrc_credentials`
+
 ## Git basics
 
 ### Git ignore
