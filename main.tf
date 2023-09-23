@@ -1,4 +1,13 @@
 terraform {
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "CoderPush"
+
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
+
   required_providers {
     random = {
       source = "hashicorp/random"

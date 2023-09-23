@@ -226,6 +226,29 @@ The dependency lock file is a file that belongs to the configuration as a whole,
 
 The lock file is always named `.terraform.lock.hcl`, and this name is intended to signify that it is a lock file for various items that Terraform caches in the `.terraform` subdirectory of your working directory.
 
+### Terraform Clouse Login issue on Gitpod Workspace
+When attemting to run `terraform login` it will launch bash a wiswig wiew to generate a token. However it dose not work as expected in Gitpod VSCode in the browser.
+
+The workaround is manually generate a token in [Terraform Cloud](https://app.terraform.io/app/settings/tokens?source=terraform-login), then create the file and open manually:
+```sh
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+
+Provide the following code(add your above generated token)
+
+```json
+{
+    "credentials": {
+        "app.terraform.io": {
+            "token": "your token"
+        }
+    }
+}
+```
+
+## Git basics
+
 ### Git ignore
 To hide a file or folder to be publiced to VCS, add the file name or path to directory to the `.gitignore` file:
 ```
@@ -233,3 +256,17 @@ To hide a file or folder to be publiced to VCS, add the file name or path to dir
 *.tfstate
 *.tfstate.*
 ```
+
+### Git stash
+If you are doing some things in the wrong branch and just relized that after you finished your work.
+1. Just add your changes with:
+`git add .` (add all your changes, you can add specific file with `git add /path/to/the/file`)
+2. Then save it with:
+`git stash save` (you can add a message after that so the context will be clearer)
+3. Create your new branch
+`git checkout my-new-branch`
+you can create the branch remotely and then fetch it to local
+`git fetch`
+`git checkout my-new-branch`
+4. Then move your change to the new branch:
+`git stash apply`
