@@ -3,6 +3,7 @@
 
 ## Weekly journals
 - [Week 0 Journal](/jounal/week0.md)
+- [Week 1 Journal](/jounal/week1.md)
 
 ## Extra
 - [Auto ToC generator](https://luciopaiva.com/markdown-toc/)
