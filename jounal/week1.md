@@ -59,3 +59,18 @@ Terraform loads variables in the following order, with later sources taking prec
 - The terraform.tfvars.json file, if present.
 - Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
 - Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
+
+## Dealing with Configuratin Drift
+Senario: If some `.tfstate` files in your project were lost, we have to do some works to get them back:
+
+### Fix missing resources with Terraform Import
+
+`terraform import aws_s3_bucket.bucket bucket-name`
+
+[Terraform Import](https://developer.hashicorp.com/terraform/cli/import)
+[AWS S3 bucket import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+### Fix Manual Configuration
+
+If someone goes and deletes or modifies cloud resource manually through ClickOps.
+
+If we run Terraform plan is with attempt to put our infrastructure back into the expected state fixing configuration drift.
