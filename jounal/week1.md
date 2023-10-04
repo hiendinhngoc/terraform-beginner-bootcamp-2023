@@ -74,3 +74,44 @@ Senario: If some `.tfstate` files in your project were lost, we have to do some 
 If someone goes and deletes or modifies cloud resource manually through ClickOps.
 
 If we run Terraform plan is with attempt to put our infrastructure back into the expected state fixing configuration drift.
+
+## Fix using Terraform Refresh
+
+```sh
+terraform apply -refresh-only -auto-approve
+```
+
+## Terraform Modules
+
+### Terraform Module Structure
+
+It's recommend to place module in a `modules` directory when locally developing modules but you can name it whatever you want.
+
+### Passing Input Variables
+
+We can pass input variables to our module
+
+The module has to declare the terraform variables in its own variables.tf
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  bucket_name = var.bucket_name
+}
+```
+
+### Modules Sources
+
+Using the source we can import the module from various places ex:
+- locally
+- github
+- Terraform registry
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+}
+```
+
+[Module Source](https://developer.hashicorp.com/terraform/language/modules/sources)

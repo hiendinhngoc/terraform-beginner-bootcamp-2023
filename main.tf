@@ -1,8 +1,17 @@
-resource "aws_s3_bucket" "website_bucket" {
-  # https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
-  bucket = var.bucket_name
+terraform {
+#   backend "remote" {
+#     hostname = "app.terraform.io"
+#     organization = "CoderPush"
 
-  tags = {
-    UserUuid = var.user_uuid
-  }
+#     workspaces {
+#       name = "terra-house-1"
+#     }
+#   }
+
+}
+
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  bucket_name = var.bucket_name
 }
