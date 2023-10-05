@@ -115,3 +115,37 @@ module "terrahouse_aws" {
 ```
 
 [Module Source](https://developer.hashicorp.com/terraform/language/modules/sources)
+
+## Working with files in Terraform
+
+### Fileexists function
+
+This is a built in terraform function to check the file is existed or not.
+```tf
+validation {
+    condition     = fileexists(var.error_html_filepath)
+    error_message = "The specified error.html file does not exist."
+  }
+```
+### Path variable
+
+### Filemd5
+
+https://developer.hashicorp.com/terraform/language/functions/filemd5
+
+In Terraform there is a speical variable called `path` that allows us to reference local paths(use `tf console`  to experiment the following commands):
+- `path.module`: Get the path for the current module
+- `path.root`: Get the path for the root module
+[Path for variables](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
+
+```tf
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  source = "${path.root}/public/index.html"
+
+  # The filemd5() function is available in Terraform 0.11.12 and later
+  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
+  # etag = "${md5(file("path/to/file"))}"
+}
+```
