@@ -244,3 +244,15 @@ resource "aws_instance" "web" {
 ```
 
 [Read more about remote-exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec)
+
+## For expressions
+
+For allows ust to enumerate over complex data types
+
+```sh
+[for k, v in var.map : length(k) + length(v)]
+```
+
+This is mostly useful when you are creating multiples of a cloud resource and you want to reduce the amount of repetitive terraform code.
+
+[Document](https://developer.hashicorp.com/terraform/language/expressions/for)
