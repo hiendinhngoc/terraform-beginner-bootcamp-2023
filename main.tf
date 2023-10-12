@@ -8,6 +8,13 @@ terraform {
 #     }
 #   }
 
+  cloud {
+    organization = "CoderPush"
+    workspaces {
+      name = "terraform-cloud"
+    }
+  }
+
 }
 
 module "terrahouse_aws" {
