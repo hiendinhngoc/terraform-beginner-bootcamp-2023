@@ -48,3 +48,9 @@ We can run the web server by executing the following command:
 bundle install
 bundle exec ruby server.rb
 ```
+
+## CRUD
+
+Terraform Provider resoures utilizes CRUD.
+
+CRUD stand for Create, Read, Update and Delete
