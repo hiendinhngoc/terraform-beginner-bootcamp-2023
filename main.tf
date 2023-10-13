@@ -7,6 +7,13 @@ terraform {
 #       name = "terra-house-1"
 #     }
 #   }
+  cloud {
+    organization = "CoderPush"
+
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
 
 }
 
