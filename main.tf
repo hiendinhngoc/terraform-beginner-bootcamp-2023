@@ -13,14 +13,13 @@ terraform {
 #       name = "terra-house-1"
 #     }
 #   }
-# cloud {
-#   organization = "CoderPush"
+  cloud {
+    organization = "CoderPush"
 
-#   workspaces {
-#     name = "terra-house-1"
-#   }
-# }
-
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
 }
 
 provider "terratowns" {
@@ -29,13 +28,11 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_arcanum_hosting" {
+  source = "./modules/terrahome_aws"
   user_uuid = var.user_uuid
-  index_html_filepath =  var.index_html_filepath
-  error_html_filepath =  var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  public_path = var.arcanum.public_path
+  content_version = var.arcanum.content_version
 }
 
 resource "terratowns_home" "home" {
@@ -46,8 +43,26 @@ From small companies to big enterprises, we support them to scale their products
 With no fixed address, we free ourselves from the physical location to extend our abilities in supporting businesses.
 We have scaled our own dream of reaching the world to be true. Now it's your chance. Let us give you a helping hand.
   DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_arcanum_hosting.domain_name
   # domain_name = "coderpush.cloudfront.net"
   town = "missingo"
-  content_version = 1
+  content_version = var.arcanum.content_version
+}
+
+module "home_payday_hosting" {
+  source = "./modules/terrahome_aws"
+  public_path = var.payday.public_path
+  user_uuid = var.user_uuid
+  content_version = var.payday.content_version
+}
+
+resource "terratowns_home" "home_payday" {
+  name = "Pushing Boundary"
+  description = <<DESCRIPTION
+scale your team. nail your dream.
+  DESCRIPTION
+  domain_name = module.home_payday_hosting.domain_name
+  # domain_name = "coderpush.cloudfront.net"
+  town = "missingo"
+  content_version = var.payday.content_version
 }
