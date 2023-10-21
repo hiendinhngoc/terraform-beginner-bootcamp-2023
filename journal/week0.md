@@ -2,7 +2,10 @@
 
 ## Table of Contents
 
-- [Semantic versioning](#sematic-versioning)
+- [Software versioning convention](#software-versioning-convention)
+  - [Semantic versioning](#semantic-versioning)
+  - [Calendar versioning](#calendar-versioning)
+  - [Romantic versioning](#romantic-versioning)
 - [Install Terraform CLI](#install-the-terraform-cli)
   - [Considerations with the Terraform CLI changes](#considerations-with-the-terraform-cli-changes)
   - [Considerations for Linux Distribution](#considerations-for-linux-distribution)
@@ -34,8 +37,38 @@
   - [Git ignore](#git-ignore)
   - [Git stash](#git-stash)
 
-## Sematic versioning
+## Software versioning convention
+
+Software projects make many decisions, but one of the most critical is deciding how to implement version control (also known as revision control, source control, or source code management). With modern software development, a versioning convention is a key tool to manage software releases and revisions. The two main approaches are calendar versioning (CalVer) and semantic versioning (SemVer), often with some alterations depending on an organization’s or project’s requirements.
+
+[Further discussion about versioning convention](https://gist.github.com/jashkenas/cbd2b088e20279ae2c8e)
+
+### Semantic versioning
+
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+1. MAJOR version when you make incompatible API changes
+2. MINOR version when you add functionality in a backward-compatible manner
+3. PATCH version when you make backward-compatible bug fixes
+
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 [Website](https://semver.org/)
+
+### Calendar versioning
+
+CalVer is a versioning convention based on your project's release calendar, instead of arbitrary numbers.
+[Website](https://calver.org/)
+
+### Romantic versioning
+
+You are given a version number HUMAN . MAJOR . MINOR, increment the:
+
+1. HUMAN version when you make any conceptual change, major rewrite, major documentation change, or any other change which requires additional HUMAN involvement.
+2. MAJOR version when you make incompatible API changes,
+3. MINOR version when you add functionality in a backward-compatible manner or fix with backward-compatible bug fixes.
+
+Additional labels for pre-release and build metadata are available as extensions to the HUMAN . MAJOR . MINOR format.
+[Details](https://github.com/romversioning/romver)
 
 ## Install the Terraform CLI
 
