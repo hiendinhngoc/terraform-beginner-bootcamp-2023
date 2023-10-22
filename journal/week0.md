@@ -232,12 +232,12 @@ rm -rf '/workspace/aws'
 ## Terraform basics
 
 ### Terraform registry
-The [Terraform Registry](https://registry.terraform.io) is a public registry of Terraform providers and modules. It is hosted by HashiCorp and is the official source for finding and installing Terraform providers and modules.
+The [Terraform Registry](https://registry.terraform.io) is a public registry(a publicly accessible centralized platform) of Terraform providers and modules. It is hosted by HashiCorp and is the official source for finding and installing Terraform providers and modules(Terraform Registry serves as a central hub where Terraform users can find pre-built providers and modules created by others, making it easier to work with Terraform and build complex infrastructure configurations.)
 
-- **[Providers](https://registry.terraform.io/browse/providers)** are plugins that allow Terraform to manage the resources of a specific cloud provider or infrastructure platform. For example, the AWS provider allows Terraform to manage EC2 instances, S3 buckets, and other AWS resources.
-- **[Modules](https://registry.terraform.io/browse/modules)** are reusable Terraform configurations that can be called and configured by other configurations. Most modules manage a few closely related resources from a single provider. For example, the terraform-aws-modules/vpc module can be used to create a VPC with all the necessary subnets, security groups, and routing tables.
+- **[Providers](https://registry.terraform.io/browse/providers)** are plugins that allow Terraform to manage the resources(such as virtual machines, networks, or storage) of a specific cloud provider or infrastructure platform. Providers can be created by the Terraform community or technology companies to extend Terraform's capabilities to work with different services or infrastructure. For example, the AWS provider allows Terraform to manage EC2 instances, S3 buckets, and other AWS resources.
+- **[Modules](https://registry.terraform.io/browse/modules)** are reusable Terraform configurations that can be called and configured by other configurations. Most modules manage a few closely related resources from a single provider. Instead of writing configuration code from scratch, users can use existing modules to define their infrastructure. For example, the terraform-aws-modules/vpc module can be used to create a VPC with all the necessary subnets, security groups, and routing tables.
 
-To use a provider or module from the Terraform Registry, just add it to your Terraform configuration file. When you run terraform init, Terraform will automatically download everything it needs from the registry.
+To use a provider or module from the Terraform Registry, just add it to your Terraform configuration file. When you run Terraform init, Terraform will automatically download everything it needs from the registry.
 
 The Terraform Registry includes a wide variety of providers and modules, covering a broad range of cloud providers, infrastructure platforms, and other services. This makes it easy to use Terraform to provision and manage infrastructure on virtually any platform.
 
