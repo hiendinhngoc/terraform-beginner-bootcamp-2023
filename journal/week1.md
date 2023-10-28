@@ -32,6 +32,25 @@ Note that the terraform.tfvars file is optional, but it is generally recommended
 
 There two types of variables in Terraform:
 1. Environment Variables: The ones which set in bash terminal like: AWS credentials
+  [AWS Environment Variable]https://registry.terraform.io/providers/hashicorp/aws/latest/docs#environment-variables
+  Store sensitive information in environment variables. Most programming languages provide ways to access environment variables securely. In the context of Terraform, you can reference environment variables directly in your configuration files.
+  For example, in Linux/macOS:
+  ```sh
+  export AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY"
+  export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
+  ```
+
+  In Windows:
+  ```sh
+  set AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY"
+  set AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
+  ```
+  Then, in your Terraform configuration, you can access these variables:
+  ```hcl
+  provider "aws" {
+    region     = "us-east-1"
+  }
+  ```
 2. Terraform Variables: Which we can normally set in the tfvars file
 
 The variables should be set as sensitive so they will be hidden on the web.
